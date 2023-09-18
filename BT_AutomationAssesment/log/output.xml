@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.2 on win32)" generated="20230918 22:05:16.748" rpa="false" schemaversion="3">
+<suite id="s1" name="TestSuite1" source="C:\Users\vvish\PycharmProjects\BT_AutomationAssesment\TestSuites\TestSuite1.robot">
+<test id="s1-t1" name="Check for 30% off and double data" line="9">
+<kw name="Launch_Application_without_accepting_cookies" library="Commom_methods" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230918 22:05:17.178" level="INFO">Opening browser 'Chrome' to base url 'https://www.bt.com/'.</msg>
+<status status="PASS" starttime="20230918 22:05:17.178" endtime="20230918 22:05:20.369"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230918 22:05:20.369" endtime="20230918 22:05:20.497"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${cookie_frame}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${cookie_frame}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230918 22:05:20.497" endtime="20230918 22:05:20.548"/>
+</kw>
+<msg timestamp="20230918 22:05:20.548" level="INFO">${Status} = True</msg>
+<status status="PASS" starttime="20230918 22:05:20.497" endtime="20230918 22:05:20.548"/>
+</kw>
+<if>
+<branch type="IF" condition="${Status} == True">
+<kw name="Select Frame" library="SeleniumLibrary">
+<arg>${cookie_frame}</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<msg timestamp="20230918 22:05:20.548" level="INFO">Selecting frame 'xpath://iframe[@title="TrustArc Cookie Consent Manager"]'.</msg>
+<status status="PASS" starttime="20230918 22:05:20.548" endtime="20230918 22:05:20.629"/>
+</kw>
+<kw name="Cookes_handling" library="Main_Page_Keywords">
+<kw name="Wait_and_click" library="Commom_methods">
+<arg>${manage_cookie_setts}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230918 22:05:20.631" endtime="20230918 22:05:21.844"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20230918 22:05:21.844" endtime="20230918 22:05:21.898"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230918 22:05:21.899" level="INFO">Clicking element 'css=a[class = shp]'.</msg>
+<status status="PASS" starttime="20230918 22:05:21.898" endtime="20230918 22:05:22.052"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:20.630" endtime="20230918 22:05:22.053"/>
+</kw>
+<kw name="Wait_and_click" library="Commom_methods">
+<arg>${reject_all_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230918 22:05:22.053" endtime="20230918 22:05:22.574"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20230918 22:05:22.574" endtime="20230918 22:05:22.624"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230918 22:05:22.624" level="INFO">Clicking element 'css=div[class = mainContent] a[class = declineAllButtonLower]'.</msg>
+<status status="PASS" starttime="20230918 22:05:22.624" endtime="20230918 22:05:22.756"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:22.053" endtime="20230918 22:05:22.756"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${cookie_preference_message}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230918 22:05:22.757" endtime="20230918 22:05:24.818"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${msg}</var>
+<arg>${cookie_preference_message}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20230918 22:05:24.859" level="INFO">${msg} = You have successfully updated your cookie preferences.</msg>
+<status status="PASS" starttime="20230918 22:05:24.819" endtime="20230918 22:05:24.859"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${msg}</arg>
+<arg>${expected_cookie_msg}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230918 22:05:24.860" endtime="20230918 22:05:24.860"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Cookies_window_close}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230918 22:05:24.861" level="INFO">Clicking element 'css:a[class = close]'.</msg>
+<status status="PASS" starttime="20230918 22:05:24.860" endtime="20230918 22:05:24.989"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:20.629" endtime="20230918 22:05:24.990"/>
+</kw>
+<kw name="Unselect Frame" library="SeleniumLibrary">
+<doc>Sets the main frame as the current frame.</doc>
+<status status="PASS" starttime="20230918 22:05:24.990" endtime="20230918 22:05:24.994"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:20.548" endtime="20230918 22:05:24.995"/>
+</branch>
+<status status="PASS" starttime="20230918 22:05:20.548" endtime="20230918 22:05:24.995"/>
+</if>
+<status status="PASS" starttime="20230918 22:05:17.178" endtime="20230918 22:05:24.995"/>
+</kw>
+<kw name="Navigation_to_mobile_page" library="Main_Page_Keywords">
+<kw name="Mouse Over" library="SeleniumLibrary">
+<arg>${nav_mobile_menu}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<msg timestamp="20230918 22:05:24.995" level="INFO">Simulating Mouse Over on element 'xpath://span[text()='Mobile']//preceding::ul[@class='left-nav-ul']'.</msg>
+<status status="PASS" starttime="20230918 22:05:24.995" endtime="20230918 22:05:25.287"/>
+</kw>
+<kw name="Wait_and_click" library="Commom_methods">
+<arg>xpath://a[text()='Mobile phones']</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230918 22:05:25.287" endtime="20230918 22:05:25.564"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20230918 22:05:25.564" endtime="20230918 22:05:25.615"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${loc}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230918 22:05:25.617" level="INFO">Clicking element 'xpath://a[text()='Mobile phones']'.</msg>
+<status status="PASS" starttime="20230918 22:05:25.616" endtime="20230918 22:05:29.228"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:25.287" endtime="20230918 22:05:29.228"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:24.995" endtime="20230918 22:05:29.229"/>
+</kw>
+<kw name="Verify_number_of_banners_below See Handset details" library="Mobile_Pages_keywords">
+<kw name="Get Element Count" library="SeleniumLibrary">
+<var>${count_of_banners}</var>
+<arg>${mobile_banners_below_Handset_details}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20230918 22:05:29.246" level="INFO">${count_of_banners} = 3</msg>
+<status status="PASS" starttime="20230918 22:05:29.230" endtime="20230918 22:05:29.246"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${banner_count}</var>
+<arg>${count_of_banners}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20230918 22:05:29.247" level="INFO">${banner_count} = 3</msg>
+<status status="PASS" starttime="20230918 22:05:29.246" endtime="20230918 22:05:29.247"/>
+</kw>
+<if>
+<branch type="IF" condition="${banner_count} &lt;= 3">
+<kw name="Log" library="BuiltIn">
+<arg>Banner counter is as expected</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230918 22:05:29.247" level="INFO">Banner counter is as expected</msg>
+<status status="PASS" starttime="20230918 22:05:29.247" endtime="20230918 22:05:29.248"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:29.247" endtime="20230918 22:05:29.248"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Banner counter is more than 3</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230918 22:05:29.248" endtime="20230918 22:05:29.248"/>
+</kw>
+<status status="NOT RUN" starttime="20230918 22:05:29.248" endtime="20230918 22:05:29.248"/>
+</branch>
+<status status="PASS" starttime="20230918 22:05:29.247" endtime="20230918 22:05:29.248"/>
+</if>
+<status status="PASS" starttime="20230918 22:05:29.229" endtime="20230918 22:05:29.248"/>
+</kw>
+<kw name="Open_SIM_only_deals" library="Mobile_Pages_keywords">
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>${btn_sim_only_deals}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20230918 22:05:29.249" endtime="20230918 22:05:29.550"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${btn_sim_only_deals}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230918 22:05:29.550" level="INFO">Clicking element 'xpath://a[@class='bt-btn bt-btn-primary']'.</msg>
+<status status="PASS" starttime="20230918 22:05:29.550" endtime="20230918 22:05:29.737"/>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<var>${acctual_title}</var>
+<doc>Returns the title of the current page.</doc>
+<msg timestamp="20230918 22:05:29.750" level="INFO">${acctual_title} = SIM Only Deals | Compare SIMO Plans &amp; Contracts | BT Mobile</msg>
+<status status="PASS" starttime="20230918 22:05:29.737" endtime="20230918 22:05:29.750"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${acctual_title}</arg>
+<arg>${Sim_only_deals_page_title}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230918 22:05:29.750" endtime="20230918 22:05:29.750"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${offer_validation}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230918 22:05:29.781" level="INFO">Current page contains element '//div[text()='30% off and double data']/following::div/div/span[text()='was ' and text()='125GB']//../span[text()='Essential Plan']/following::span[text()='was ' and text()='£27']/../div[text()='18']/sub[text()='.' and text() = '90']/../../span[text()='Per month']'.</msg>
+<status status="PASS" starttime="20230918 22:05:29.750" endtime="20230918 22:05:29.781"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>${btn_view_on_ECC}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20230918 22:05:29.781" endtime="20230918 22:05:30.151"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20230918 22:05:30.416" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230918 22:05:30.151" endtime="20230918 22:05:30.417"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:29.249" endtime="20230918 22:05:30.417"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230918 22:05:30.417" endtime="20230918 22:05:32.612"/>
+</kw>
+<status status="PASS" starttime="20230918 22:05:17.178" endtime="20230918 22:05:32.612"/>
+</test>
+<status status="PASS" starttime="20230918 22:05:16.763" endtime="20230918 22:05:32.612"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="TestSuite1">TestSuite1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
